@@ -3,6 +3,7 @@ from __future__ import division
 from __future__ import print_function
 
 import sys
+import os
 import numpy as np
 import tensorflow as tf
 
@@ -20,7 +21,7 @@ class DigitRecognizer:
     self.sess.run(init_op)
 
     self.saver = tf.train.Saver()
-    self.saver.restore(self.sess, "/home/jesse/Data/mnist_model.ckpt")
+    self.saver.restore(self.sess, os.environ['HOME'] + "/Data/mnist_model.ckpt")
 
   def do(self, image):
     ret = self.sess.run(tf.argmax(self.y, 1), feed_dict={self.x:[image]})
@@ -41,7 +42,7 @@ def index2ary(len, index):
 
 def main():
   from tensorflow.examples.tutorials.mnist import input_data
-  mnist = input_data.read_data_sets("/home/jesse/Data", one_hot=True)
+  mnist = input_data.read_data_sets(os.environ['HOME'] + "/Data", one_hot=True)
   image = mnist.test.images[1]
 
   image = img2binary(image)

@@ -1,15 +1,15 @@
 from flask import Flask
+import digit_recognizer as dr
+import os
+
 app = Flask(__name__)
 
-import digit_recognizer as dr
-
 rec = dr.DigitRecognizer()
-
 
 @app.route("/")
 def hello():
   from tensorflow.examples.tutorials.mnist import input_data
-  mnist = input_data.read_data_sets("/home/jesse/Data", one_hot=True)
+  mnist = input_data.read_data_sets(os.environ['HOME'] + "/Data", one_hot=True)
   image = mnist.test.images[1]
   image = dr.img2binary(image)
   image = dr.index2ary(784, image)
@@ -22,5 +22,6 @@ def digit():
   return str(ret)
 
 if __name__ == "__main__":
-  app.debug = True
+  # app.debug = True
   app.run(host='0.0.0.0')
+  # app.run()
