@@ -23,7 +23,7 @@ class DigitRecognizer:
     self.saver = tf.train.Saver()
     self.saver.restore(self.sess, os.environ['HOME'] + "/Data/mnist_model.ckpt")
 
-  def do(self, image):
+  def do_softmax(self, image):
     ret = self.sess.run(tf.argmax(self.y, 1), feed_dict={self.x:[image]})
     return(ret[0])
 
