@@ -13,7 +13,8 @@ def hello():
   image = mnist.test.images[1]
   image = dr.img2binary(image)
   image = dr.index2ary(784, image)
-  ret = rec.do_softmax(image)
+  # ret = rec.do_softmax(image)
+  ret = rec.do_deep(image)
   return str(ret)
 
 @app.route("/digit/", methods=['POST'])
