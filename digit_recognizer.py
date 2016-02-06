@@ -89,7 +89,7 @@ def img2binary(image):
 def index2ary(len, index):
   img = np.zeros(len)
   for ele in index:
-    img[ele] = 1
+    img[ele] = 255
   return img
 
 def main():
